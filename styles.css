@@ -357,3 +357,4 @@ body {
 .bigcard-kana.wide { font-size: min(140px, calc(var(--app-h, 100dvh) * 0.28)); }
 .bigcard-romaji { font-weight: 900; font-size: 64px; color: var(--violet); }
 .pop { animation: pop 0.3s ease-out; }
+.romaji-prompt.long { font-size: 34px; }
