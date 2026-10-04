@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <!-- Même dessin que l'icône Android (ic_launcher_foreground.xml) : soleil rouge et « ア » au pinceau. -->
+  <rect width="108" height="108" fill="#7C3AED"/>
+  <circle cx="54" cy="54" r="24" fill="#F2384A"/>
+  <path d="M40,42 L68,42 Q66,51 57,56" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M53,48 Q54,63 42,72" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+</svg>
