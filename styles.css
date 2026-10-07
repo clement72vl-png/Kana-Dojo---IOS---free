@@ -80,7 +80,7 @@ body {
 .topbar { display: flex; align-items: center; gap: 8px; }
 .brand { flex: 1; font-weight: 900; font-size: 30px; color: var(--violet); }
 .pill { border-radius: 99px; padding: 6px 12px; font-weight: 900; background: var(--surface-alt); }
-.pill.flame { color: var(--flame); } .pill.gold { color: var(--gold); }
+.pill.flame { color: var(--flame); } .pill.gold { color: var(--gold); } .pill.green { color: var(--green); }
 .toggle { display: flex; background: var(--surface-alt); border-radius: 99px; padding: 5px; }
 .toggle-item { flex: 1; text-align: center; padding: 12px 0; border-radius: 99px; color: var(--muted); font-weight: 800; transition: background 0.2s; }
 .toggle-item.on { background: var(--violet); color: var(--on-violet); }
@@ -358,3 +358,11 @@ body {
 .bigcard-romaji { font-weight: 900; font-size: 64px; color: var(--violet); }
 .pop { animation: pop 0.3s ease-out; }
 .romaji-prompt.long { font-size: 34px; }
+
+/* ---- 6.0 : fiches « Mes pièges » ---- */
+.trap-title { font-weight: 900; font-size: 20px; color: var(--violet); }
+.trap-pair { display: flex; gap: 12px; }
+.trap-kana { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.trap-lines { display: flex; flex-direction: column; gap: 8px; }
+.trap-line { font-size: 16px; line-height: 1.35; }
+.guide { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 14px; background: var(--surface-alt); }
