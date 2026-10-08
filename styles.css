@@ -404,13 +404,18 @@ body[data-mod="japan"] {
 .gates-page { min-height: var(--app-h, 100dvh); padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
 .gates-head { text-align: center; }
 .gates-brand { font-weight: 900; font-size: 34px; letter-spacing: 6px; color: var(--violet); }
-.gate-row { flex: 1; display: flex; gap: 10px; min-height: 0; }
-.gate { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+/* 7.2 : 2 portes en haut, 1 centrée en bas (des portes plus larges, moins allongées). */
+.gate-row {
+  flex: 1; min-height: 0; display: grid; gap: 14px 16px;
+  grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+}
+.gate-row .gate:nth-child(3) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 8px); }
+.gate { min-width: 0; min-height: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; }
 .gate-kana { --mod: #7C3AED; --mod-light: #A67BFF; }
 .gate-grammar { --mod: #1E6FD9; --mod-light: #6AA6F5; }
 .gate-japan { --mod: #D9480F; --mod-light: #FF8A57; }
 .gate-door {
-  position: relative; width: 100%; flex: 1; min-height: 240px; overflow: hidden;
+  position: relative; width: 100%; flex: 1; min-height: 120px; overflow: hidden;
   border: 6px solid var(--wood); border-radius: 6px; background: var(--wood-dark);
   box-shadow: 0 6px 0 var(--wood-dark), 0 10px 22px rgba(0, 0, 0, 0.18);
 }
@@ -426,7 +431,7 @@ body[data-mod="japan"] {
   background-color: var(--paper);
   background-image:
     repeating-linear-gradient(to bottom, transparent 0 38px, var(--wood) 38px 41px),
-    repeating-linear-gradient(to right, transparent 0 calc(33.3% - 2px), var(--wood) calc(33.3% - 2px) 33.3%);
+    repeating-linear-gradient(to right, transparent 0 calc(25% - 2px), var(--wood) calc(25% - 2px) 25%);
   transition: transform 0.7s cubic-bezier(0.6, 0.05, 0.3, 1);
 }
 .shoji-left { left: 0; border-right: 3px solid var(--wood); }
@@ -439,7 +444,7 @@ body[data-mod="japan"] {
 /* Rideau (noren) à la couleur du module, deux pans. */
 .noren {
   position: absolute; top: 0; left: 0; right: 0; height: 30%; z-index: 2;
-  display: flex; align-items: flex-start; justify-content: center; padding-top: 14%;
+  display: flex; align-items: flex-start; justify-content: center; padding-top: 6px; line-height: 1.1;
   font-weight: 900; font-size: 22px; letter-spacing: 2px; color: #fff; white-space: nowrap;
   /* Deux pans : tissu plein en haut, fendu au milieu dans le bas. */
   background:
@@ -448,8 +453,8 @@ body[data-mod="japan"] {
   filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.15)); transition: opacity 0.3s, transform 0.4s;
 }
 .gate-door.open .noren { opacity: 0; transform: translateY(-30%); }
-.gate-name { font-weight: 900; font-size: clamp(14px, 4.6vw, 18px); color: var(--text); white-space: nowrap; }
-.gate-sub { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.2; min-height: 2.4em; }
+.gate-name { font-weight: 900; font-size: 18px; color: var(--text); white-space: nowrap; }
+.gate-sub { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.2; }
 .gate-back {
   width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
   background: var(--surface-alt); font-size: 20px; cursor: pointer; flex: none;
