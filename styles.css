@@ -366,3 +366,134 @@ body {
 .trap-lines { display: flex; flex-direction: column; gap: 8px; }
 .trap-line { font-size: 16px; line-height: 1.35; }
 .guide { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 14px; background: var(--surface-alt); }
+
+/* ======================================================================
+   7.0 : les trois portes (shoji) et les couleurs de chaque module.
+   Kana = violet (défaut), Grammaire = bleu indigo (藍), Japon = vermillon (朱).
+   ====================================================================== */
+body { --wood: #6B4426; --wood-dark: #4A2C16; --paper: #FBF6EA; }
+body[data-mod="grammar"] {
+  --violet: #1E6FD9; --violet-lip: #134E9E; --violet-soft: #E2EEFC; --ghost: rgba(30, 111, 217, 0.22);
+  --surface-alt: #F1F6FE; --border: #D7E5F8;
+}
+body[data-mod="japan"] {
+  --violet: #D9480F; --violet-lip: #9C3008; --violet-soft: #FDE8DD; --ghost: rgba(217, 72, 15, 0.22);
+  --surface-alt: #FFF5EF; --border: #F6DCCD;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body { --paper: #EDE3CC; --wood: #5A3920; }
+  :root:not([data-theme="light"]) body[data-mod="grammar"] {
+    --bg: #0D1422; --surface: #141E33; --surface-alt: #172238; --border: #2A3D60;
+    --violet: #5B9DFF; --violet-lip: #2F6CCB; --violet-soft: #182A47; --ghost: rgba(91, 157, 255, 0.28);
+  }
+  :root:not([data-theme="light"]) body[data-mod="japan"] {
+    --bg: #1A0E09; --surface: #24140D; --surface-alt: #2A1810; --border: #4A2A1C;
+    --violet: #FF7A45; --violet-lip: #C2501F; --violet-soft: #3D1D10; --ghost: rgba(255, 122, 69, 0.28);
+  }
+}
+:root[data-theme="dark"] body { --paper: #EDE3CC; --wood: #5A3920; }
+:root[data-theme="dark"] body[data-mod="grammar"] {
+  --bg: #0D1422; --surface: #141E33; --surface-alt: #172238; --border: #2A3D60;
+  --violet: #5B9DFF; --violet-lip: #2F6CCB; --violet-soft: #182A47; --ghost: rgba(91, 157, 255, 0.28);
+}
+:root[data-theme="dark"] body[data-mod="japan"] {
+  --bg: #1A0E09; --surface: #24140D; --surface-alt: #2A1810; --border: #4A2A1C;
+  --violet: #FF7A45; --violet-lip: #C2501F; --violet-soft: #3D1D10; --ghost: rgba(255, 122, 69, 0.28);
+}
+
+.gates-page { min-height: var(--app-h, 100dvh); padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+.gates-head { text-align: center; }
+.gates-brand { font-weight: 900; font-size: 34px; letter-spacing: 6px; color: var(--violet); }
+.gate-row { flex: 1; display: flex; gap: 10px; min-height: 0; }
+.gate { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+.gate-kana { --mod: #7C3AED; --mod-light: #A67BFF; }
+.gate-grammar { --mod: #1E6FD9; --mod-light: #6AA6F5; }
+.gate-japan { --mod: #D9480F; --mod-light: #FF8A57; }
+.gate-door {
+  position: relative; width: 100%; flex: 1; min-height: 240px; overflow: hidden;
+  border: 6px solid var(--wood); border-radius: 6px; background: var(--wood-dark);
+  box-shadow: 0 6px 0 var(--wood-dark), 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+.gate-inside {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 45%, var(--mod-light), var(--mod) 70%);
+}
+.gate-inside-glyph { font-size: 64px; font-weight: 900; color: #fff; text-shadow: 0 3px 0 rgba(0, 0, 0, 0.2); transform: scale(0.8); transition: transform 0.7s ease-out 0.2s; }
+.gate-door.open .gate-inside-glyph { transform: scale(1.15); }
+/* Panneau de papier tendu sur une grille de bois (kumiko). */
+.shoji {
+  position: absolute; top: 0; bottom: 0; width: 50%;
+  background-color: var(--paper);
+  background-image:
+    repeating-linear-gradient(to bottom, transparent 0 38px, var(--wood) 38px 41px),
+    repeating-linear-gradient(to right, transparent 0 calc(33.3% - 2px), var(--wood) calc(33.3% - 2px) 33.3%);
+  transition: transform 0.7s cubic-bezier(0.6, 0.05, 0.3, 1);
+}
+.shoji-left { left: 0; border-right: 3px solid var(--wood); }
+.shoji-right { right: 0; border-left: 3px solid var(--wood); }
+/* Poignée creuse (hikite). */
+.shoji::after { content: ""; position: absolute; top: 55%; width: 9px; height: 16px; border-radius: 5px; background: var(--wood-dark); }
+.shoji-left::after { right: 7px; } .shoji-right::after { left: 7px; }
+.gate-door.open .shoji-left { transform: translateX(-100%); }
+.gate-door.open .shoji-right { transform: translateX(100%); }
+/* Rideau (noren) à la couleur du module, deux pans. */
+.noren {
+  position: absolute; top: 0; left: 0; right: 0; height: 30%; z-index: 2;
+  display: flex; align-items: flex-start; justify-content: center; padding-top: 14%;
+  font-weight: 900; font-size: 22px; letter-spacing: 2px; color: #fff; white-space: nowrap;
+  /* Deux pans : tissu plein en haut, fendu au milieu dans le bas. */
+  background:
+    linear-gradient(var(--mod), var(--mod)) top / 100% 55% no-repeat,
+    linear-gradient(to right, var(--mod) 0 49%, transparent 49% 51%, var(--mod) 51%) bottom / 100% 45% no-repeat;
+  filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.15)); transition: opacity 0.3s, transform 0.4s;
+}
+.gate-door.open .noren { opacity: 0; transform: translateY(-30%); }
+.gate-name { font-weight: 900; font-size: clamp(14px, 4.6vw, 18px); color: var(--text); white-space: nowrap; }
+.gate-sub { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.2; min-height: 2.4em; }
+.gate-back {
+  width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  background: var(--surface-alt); font-size: 20px; cursor: pointer; flex: none;
+}
+
+/* Grammaire et Japon */
+.status-badge { align-self: flex-start; padding: 4px 10px; border-radius: 99px; background: var(--violet-soft); color: var(--violet); font-weight: 800; font-size: 13px; }
+.status-badge.small { font-size: 11px; opacity: 0.85; }
+.dots { display: flex; gap: 6px; justify-content: center; }
+.dot { width: 8px; height: 8px; border-radius: 9px; background: var(--border); }
+.dot.on { background: var(--violet); width: 20px; }
+.lesson-theme { font-weight: 800; font-size: 18px; }
+.vocab { display: flex; flex-direction: column; gap: 2px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border); }
+.vocab-row { display: grid; grid-template-columns: 1.1fr 1fr 1.3fr; gap: 8px; padding: 8px 12px; background: var(--surface); align-items: center; }
+.vocab-row:nth-child(odd) { background: var(--surface-alt); }
+.vocab-jp { font-size: 18px; font-weight: 800; }
+.vocab-romaji { color: var(--violet); font-size: 14px; }
+.vocab-fr { color: var(--muted); font-size: 14px; }
+.point-title { font-weight: 900; font-size: 22px; }
+.pattern { padding: 14px; border-radius: 16px; background: var(--violet); color: var(--on-violet); font-size: 22px; font-weight: 900; text-align: center; box-shadow: 0 5px 0 var(--violet-lip); }
+.explain { display: flex; flex-direction: column; gap: 8px; }
+.explain-line { line-height: 1.45; }
+.example { padding: 10px 14px; border-radius: 16px; background: var(--surface-alt); border: 2px solid var(--border); }
+.example-jp { font-size: 20px; font-weight: 800; display: flex; justify-content: space-between; gap: 8px; }
+.example-speak { cursor: pointer; }
+.example-romaji { color: var(--violet); font-size: 14px; }
+.example-fr { color: var(--muted); font-size: 15px; }
+.pitfall { padding: 12px 14px; border-radius: 16px; background: var(--red-soft); color: var(--text); border: 2px solid var(--red-soft-ink); }
+.quiz-invite { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; }
+.quiz-invite .emoji { font-size: 64px; }
+.fiche-hero { display: flex; align-items: center; gap: 12px; }
+.fiche-emoji { font-size: 56px; }
+.fiche-hero .chip { padding: 0 12px; background: var(--violet-soft); color: var(--violet); }
+.fiche-para { line-height: 1.5; }
+.did-you-know { padding: 12px 14px; border-radius: 16px; background: var(--violet-soft); display: flex; flex-direction: column; gap: 4px; line-height: 1.45; }
+.mcq-prompt { font-weight: 900; font-size: 21px; line-height: 1.3; }
+.mcq-choices { display: flex; flex-direction: column; gap: 10px; }
+.mcq-choice {
+  padding: 14px 16px; border-radius: 16px; background: var(--surface); border: 2px solid var(--border);
+  box-shadow: 0 4px 0 var(--border); font-weight: 800; font-size: 18px; cursor: pointer;
+}
+.mcq-choice:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--border); }
+.mcq-choice.right { background: var(--green-soft); border-color: var(--green); box-shadow: 0 4px 0 var(--green-lip); }
+.mcq-choice.wrong { background: var(--red-soft); border-color: var(--red); box-shadow: 0 4px 0 var(--red-lip); }
+.mcq-choice.faded { opacity: 0.5; }
+.mcq-feedback { padding: 12px 14px; border-radius: 16px; display: flex; flex-direction: column; gap: 4px; line-height: 1.4; }
+.mcq-feedback.ok { background: var(--green-soft); } .mcq-feedback.ko { background: var(--red-soft); }
