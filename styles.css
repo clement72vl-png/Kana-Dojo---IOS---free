@@ -376,6 +376,10 @@ body[data-mod="grammar"] {
   --violet: #1E6FD9; --violet-lip: #134E9E; --violet-soft: #E2EEFC; --ghost: rgba(30, 111, 217, 0.22);
   --surface-alt: #F1F6FE; --border: #D7E5F8;
 }
+body[data-mod="speak"] {
+  --violet: #0B8F9C; --violet-lip: #07646D; --violet-soft: #DDF4F6; --ghost: rgba(11, 143, 156, 0.22);
+  --surface-alt: #EFFAFB; --border: #CDEDF0;
+}
 body[data-mod="japan"] {
   --violet: #D9480F; --violet-lip: #9C3008; --violet-soft: #FDE8DD; --ghost: rgba(217, 72, 15, 0.22);
   --surface-alt: #FFF5EF; --border: #F6DCCD;
@@ -385,6 +389,10 @@ body[data-mod="japan"] {
   :root:not([data-theme="light"]) body[data-mod="grammar"] {
     --bg: #0D1422; --surface: #141E33; --surface-alt: #172238; --border: #2A3D60;
     --violet: #5B9DFF; --violet-lip: #2F6CCB; --violet-soft: #182A47; --ghost: rgba(91, 157, 255, 0.28);
+  }
+  :root:not([data-theme="light"]) body[data-mod="speak"] {
+    --bg: #07171A; --surface: #0D2125; --surface-alt: #10272B; --border: #1D4A50;
+    --violet: #1FA8B4; --violet-lip: #0F7880; --violet-soft: #0F3438; --ghost: rgba(31, 168, 180, 0.28);
   }
   :root:not([data-theme="light"]) body[data-mod="japan"] {
     --bg: #1A0E09; --surface: #24140D; --surface-alt: #2A1810; --border: #4A2A1C;
@@ -396,6 +404,10 @@ body[data-mod="japan"] {
   --bg: #0D1422; --surface: #141E33; --surface-alt: #172238; --border: #2A3D60;
   --violet: #5B9DFF; --violet-lip: #2F6CCB; --violet-soft: #182A47; --ghost: rgba(91, 157, 255, 0.28);
 }
+:root[data-theme="dark"] body[data-mod="speak"] {
+  --bg: #07171A; --surface: #0D2125; --surface-alt: #10272B; --border: #1D4A50;
+  --violet: #1FA8B4; --violet-lip: #0F7880; --violet-soft: #0F3438; --ghost: rgba(31, 168, 180, 0.28);
+}
 :root[data-theme="dark"] body[data-mod="japan"] {
   --bg: #1A0E09; --surface: #24140D; --surface-alt: #2A1810; --border: #4A2A1C;
   --violet: #FF7A45; --violet-lip: #C2501F; --violet-soft: #3D1D10; --ghost: rgba(255, 122, 69, 0.28);
@@ -404,16 +416,16 @@ body[data-mod="japan"] {
 .gates-page { min-height: var(--app-h, 100dvh); padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
 .gates-head { text-align: center; }
 .gates-brand { font-weight: 900; font-size: 34px; letter-spacing: 6px; color: var(--violet); }
-/* 7.2 : 2 portes en haut, 1 centrée en bas (des portes plus larges, moins allongées). */
+/* 7.2 : portes larges, peu allongées ; 2.6 : 2 rangées de 2 avec la porte Parler. */
 .gate-row {
   flex: 1; min-height: 0; display: grid; gap: 14px 16px;
   grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
 }
-.gate-row .gate:nth-child(3) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 8px); }
 .gate { min-width: 0; min-height: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; }
 .gate-kana { --mod: #7C3AED; --mod-light: #A67BFF; }
 .gate-grammar { --mod: #1E6FD9; --mod-light: #6AA6F5; }
 .gate-japan { --mod: #D9480F; --mod-light: #FF8A57; }
+.gate-speak { --mod: #0B8F9C; --mod-light: #48C6D0; }
 .gate-door {
   position: relative; width: 100%; flex: 1; min-height: 120px; overflow: hidden;
   border: 6px solid var(--wood); border-radius: 6px; background: var(--wood-dark);
@@ -502,3 +514,29 @@ body[data-mod="japan"] {
 .mcq-choice.faded { opacity: 0.5; }
 .mcq-feedback { padding: 12px 14px; border-radius: 16px; display: flex; flex-direction: column; gap: 4px; line-height: 1.4; }
 .mcq-feedback.ok { background: var(--green-soft); } .mcq-feedback.ko { background: var(--red-soft); }
+
+/* ======================================================================
+   2.6 : module Parler (話). Le micro, le mot à dire, le diagnostic.
+   ====================================================================== */
+.speak-tip { padding: 12px 14px; border-radius: 16px; background: var(--violet-soft); line-height: 1.45; }
+.speak-word { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; text-align: center; }
+.speak-kana { font-size: 56px; font-weight: 900; color: var(--text); line-height: 1.1; }
+.speak-kana.long { font-size: 42px; }
+.speak-kana.longer { font-size: 32px; }
+.speak-romaji { font-weight: 800; font-size: 18px; color: var(--violet); }
+.speak-actions { display: flex; justify-content: center; align-items: center; gap: 22px; padding: 6px 0; }
+.speak-action { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; font-weight: 800; }
+.speak-btn {
+  width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 26px; background: var(--violet-soft); box-shadow: 0 4px 0 var(--border);
+}
+.speak-btn.mic { width: 96px; height: 96px; font-size: 40px; background: var(--violet); box-shadow: 0 6px 0 var(--violet-lip); }
+.speak-btn.listening { background: var(--red); box-shadow: 0 6px 0 var(--red-lip); animation: speak-pulse 1.2s ease-in-out infinite; }
+.speak-btn.off { background: var(--disabled, #ccc); box-shadow: none; cursor: default; }
+.speak-action.listening .speak-label { color: var(--red); }
+@keyframes speak-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.speak-card { padding: 12px 14px; border-radius: 16px; display: flex; flex-direction: column; gap: 4px; line-height: 1.4; background: var(--surface-alt); }
+.speak-card.ok { background: var(--green-soft); }
+.speak-card.almost { background: var(--violet-soft); }
+.speak-card.ko { background: var(--red-soft); }
+.speak-note { padding: 12px 14px; border-radius: 16px; background: var(--red-soft); line-height: 1.45; }
