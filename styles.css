@@ -540,3 +540,25 @@ body[data-mod="japan"] {
 .speak-card.almost { background: var(--violet-soft); }
 .speak-card.ko { background: var(--red-soft); }
 .speak-note { padding: 12px 14px; border-radius: 16px; background: var(--red-soft); line-height: 1.45; }
+
+/* ======================================================================
+   2.7 : Lire le Japon. Photos réelles et lecteur de texte collé.
+   ====================================================================== */
+.scene-photo { width: 100%; height: auto; border-radius: 16px; display: block; background: var(--surface-alt); }
+.scene-credit { font-size: 11px; color: var(--muted); margin-top: -8px; }
+.scene-credit a { color: inherit; }
+.scene-word span:first-child { font-size: 26px; }
+.read-area { min-height: 96px; font-size: 20px; }
+.read-results { display: flex; flex-direction: column; gap: 10px; }
+.read-legend { display: flex; gap: 6px; }
+.read-legend .piece { padding: 2px 8px; font-size: 12px; font-weight: 800; }
+.read-pieces { display: flex; flex-wrap: wrap; gap: 6px; }
+.piece { border-radius: 10px; padding: 4px 8px; display: flex; flex-direction: column; align-items: center; border: 2px solid transparent; }
+.piece.hira { background: var(--violet-soft); }
+.piece.kata { background: var(--green-soft); }
+.piece.kanji { background: var(--red-soft); }
+.piece.other { background: var(--surface-alt); }
+.piece.known { border-color: var(--violet); }
+.piece-text { font-size: 22px; color: var(--text); }
+.piece-romaji { font-size: 12px; font-weight: 800; color: var(--violet); }
+.piece-note { font-size: 11px; color: var(--muted); }
