@@ -2,7 +2,7 @@
 // s'ouvre sans réseau. Stratégie « réseau d'abord » (3 s max) : en ligne on a toujours la
 // dernière version, hors ligne (ou réseau trop lent) on sert la copie locale.
 // La progression n'est PAS ici : elle vit dans le localStorage, jamais touché par ce fichier.
-const CACHE = 'kana-dojo-v15';
+const CACHE = 'kana-dojo-v16';
 const FILES = [
   './', 'index.html', 'styles.css', 'kana-dojo.js', 'manifest.webmanifest',
   'content/words.json',
