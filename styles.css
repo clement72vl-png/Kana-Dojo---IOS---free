@@ -596,3 +596,19 @@ body.viewer-open { overflow: hidden; }
 .viewer-hint { background: rgba(0,0,0,.6); border-radius: 12px; padding: 8px 12px; font-size: 14px; display: inline-block; }
 .viewer-word { background: var(--surface); color: var(--text); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 4px; }
 .scene-list-toggle { color: var(--violet); font-weight: 700; cursor: pointer; padding: 4px 0; }
+
+/* 3.3 : 4 mots du jour */
+.daily-banner { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: var(--violet-soft); color: var(--violet); cursor: pointer; }
+.daily-banner.todo { background: var(--violet); color: var(--on-violet); box-shadow: 0 4px 0 var(--violet-lip); }
+.daily-banner-body { flex: 1; min-width: 0; }
+.daily-banner-title { font-weight: 900; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.daily-banner-sub { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+.daily-banner.todo .daily-banner-sub { color: var(--on-violet); }
+.daily-banner-go { font-weight: 900; }
+.word-card { display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 18px; background: var(--surface); border: 2px solid var(--border); }
+.word-card-head { display: flex; align-items: center; justify-content: space-between; }
+.word-script { font-size: 13px; font-weight: 800; color: var(--violet); background: var(--violet-soft); border-radius: 999px; padding: 3px 10px; }
+.word-big { font-size: 44px; font-weight: 900; line-height: 1.15; overflow-wrap: anywhere; }
+.word-reading { font-size: 20px; font-weight: 700; }
+.word-fr { font-size: 17px; font-weight: 800; color: var(--violet); }
+.word-example { font-size: 16px; margin-top: 4px; }
