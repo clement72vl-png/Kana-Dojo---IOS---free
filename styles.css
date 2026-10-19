@@ -612,3 +612,13 @@ body.viewer-open { overflow: hidden; }
 .word-reading { font-size: 20px; font-weight: 700; }
 .word-fr { font-size: 17px; font-weight: 800; color: var(--violet); }
 .word-example { font-size: 16px; margin-top: 4px; }
+/* 3.3.1 : un mot à la fois */
+.daily-step { display: flex; align-items: center; justify-content: space-between; }
+.daily-dots { display: flex; align-items: center; gap: 8px; }
+.daily-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); cursor: pointer; }
+.daily-dots .dot.done { background: var(--violet); }
+.daily-dots .dot.on { width: 14px; height: 14px; background: var(--violet); }
+.word-card .word-big { font-size: 64px; }
+.daily-foot { display: flex; flex-direction: row; gap: 10px; }
+.daily-foot .btn { flex: 1; }
+.daily-foot .daily-prev { flex: 0 0 72px; }
