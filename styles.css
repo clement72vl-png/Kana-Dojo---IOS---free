@@ -3,6 +3,10 @@
 @font-face { font-family: Nunito; src: url(fonts/nunito_semibold.ttf); font-weight: 400 600; font-display: swap; }
 @font-face { font-family: Nunito; src: url(fonts/nunito_extrabold.ttf); font-weight: 700 800; font-display: swap; }
 @font-face { font-family: Nunito; src: url(fonts/nunito_black.ttf); font-weight: 900; font-display: swap; }
+/* 3.8 : kana en style « manuel scolaire » (Klee One, SIL OFL 1.1, réduite aux kana : fonts/KleeOne-OFL.txt).
+   Les traits y sont dessinés comme à la main (さ, き, り en traits séparés). Seuls les kana
+   utilisent cette police (unicode-range) : le texte latin reste en Nunito. */
+@font-face { font-family: KanaHand; src: url(fonts/klee_kana.woff2) format("woff2"); unicode-range: U+3000-303F, U+3041-309F, U+30A0-30FF; font-display: swap; }
 
 :root {
   --bg: #FFFFFF; --surface: #FFFFFF; --surface-alt: #F6F2FF; --border: #E6DFF7;
@@ -638,3 +642,35 @@ body.viewer-open { overflow: hidden; }
 .daily-foot { display: flex; flex-direction: row; gap: 10px; }
 .daily-foot .btn { flex: 1; }
 .daily-foot .daily-prev { flex: 0 0 72px; }
+
+/* 3.8 : grands kana en police scolaire (lecture = forme à tracer). */
+.prompt, .choice.kana, .big-kana, .cell-kana, .bigcard-kana, .contrast-kana {
+  font-family: KanaHand, Nunito, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; font-weight: 600;
+}
+/* 3.8 : sur une erreur, le bon kana et celui pris à sa place, côte à côte. */
+.contrast { display: flex; gap: 12px; }
+.contrast-tile { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 6px 4px 8px; border-radius: 18px; background: var(--surface); border: 3px solid var(--green); }
+.contrast-tile.ko { border-color: var(--red); }
+.contrast-kana { font-size: 60px; line-height: 1.15; color: var(--text); }
+.contrast-read { font-weight: 900; font-size: 20px; color: var(--green); }
+.contrast-tile.ko .contrast-read { color: var(--red); }
+.contrast-label { font-size: 12px; color: var(--muted); }
+/* 3.8 : accueil Kana : Révision en vert (réviser fait progresser : le rouge reste aux erreurs),
+   deux grandes cartes, le reste en petites tuiles. */
+.mtile.success { background: var(--green); color: #fff; box-shadow: 0 5px 0 var(--green-lip); }
+.mgrid.main { flex: 1.4 1 0; }
+.more-label { font-weight: 800; font-size: 14px; color: var(--muted); margin-top: 2px; }
+.mgrid.more { flex: 1 1 0; grid-template-columns: 1fr 1fr 1fr; }
+.mgrid.more .mtile { align-items: center; justify-content: center; text-align: center; padding: 6px; }
+.mgrid.more .mtile-head { flex-direction: column; gap: 2px; font-size: 14px; }
+.mgrid.more .mtile-sub { display: none; }
+/* 3.8 : la séance est l'action principale : les 4 portes sur une seule rangée, plus basse. */
+.gate-row.compact { flex: none; height: 180px; grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; gap: 10px; }
+.gate-row.compact .gate-door { min-height: 0; border-width: 4px; }
+.gate-row.compact .gate-inside-glyph { font-size: 40px; }
+.gate-row.compact .gate-sub { display: none; }
+.gate-row.compact .gate-name { font-size: 14px; }
+.gate-row.compact .noren { font-size: 14px; }
+.gate-row.compact .gate-name { margin-top: 8px; }
+.week-panel { margin-top: 16px; padding: 12px 14px; border-radius: 18px; background: var(--surface); border: 2px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.week-head { display: flex; align-items: center; justify-content: space-between; }
