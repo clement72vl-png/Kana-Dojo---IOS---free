@@ -38,7 +38,7 @@
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
 body {
-  font-family: Nunito, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-family: Nunito, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Noto Sans CJK JP", -apple-system, sans-serif;
   font-weight: 600; font-size: 16px; line-height: 1.35;
   -webkit-user-select: none; user-select: none; overscroll-behavior: none;
 }
@@ -605,6 +605,22 @@ body.viewer-open { overflow: hidden; }
 .daily-banner-sub { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
 .daily-banner.todo .daily-banner-sub { color: var(--on-violet); }
 .daily-banner-go { font-weight: 900; }
+/* 3.7 : séance du jour (au-dessus des portes) et prévision des révisions. */
+.session-card { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 16px; border-radius: 18px; background: var(--violet-soft); color: var(--violet); }
+.session-card.todo { background: var(--violet); color: var(--on-violet); box-shadow: 0 5px 0 var(--violet-lip); cursor: pointer; }
+.session-body { flex: 1; min-width: 0; }
+.session-title { font-weight: 900; font-size: 20px; }
+.session-sub { font-size: 14px; color: var(--text); }
+.session-card.todo .session-sub { color: var(--on-violet); }
+.session-go { font-weight: 900; font-size: 24px; }
+.daily-banner { min-height: 44px; }
+.forecast { display: flex; align-items: flex-end; gap: 6px; height: 96px; }
+.fc-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 2px; }
+.fc-n { font-size: 13px; font-weight: 800; }
+.fc-bar { width: 100%; border-radius: 6px; background: var(--violet); }
+.fc-col.today .fc-bar { background: var(--red); }
+.fc-col.today .fc-n { color: var(--red); }
+.fc-day { font-size: 12px; color: var(--muted, #888); white-space: nowrap; }
 .word-card { display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 18px; background: var(--surface); border: 2px solid var(--border); }
 .word-card-head { display: flex; align-items: center; justify-content: space-between; }
 .word-script { font-size: 13px; font-weight: 800; color: var(--violet); background: var(--violet-soft); border-radius: 999px; padding: 3px 10px; }
