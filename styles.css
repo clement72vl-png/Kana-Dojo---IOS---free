@@ -674,3 +674,33 @@ body.viewer-open { overflow: hidden; }
 .gate-row.compact .gate-name { margin-top: 8px; }
 .week-panel { margin-top: 16px; padding: 12px 14px; border-radius: 18px; background: var(--surface); border: 2px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
 .week-head { display: flex; align-items: center; justify-content: space-between; }
+/* 3.10 : cartes façon Anki. */
+.flashcard {
+  min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  padding: 20px; border-radius: 26px; background: var(--violet-soft); border: 3px solid var(--violet);
+  text-align: center; cursor: pointer; transition: transform 0.2s ease-in; transform-style: preserve-3d;
+}
+.flashcard.flipping { transform: perspective(900px) rotateY(90deg); }
+.flashcard.fc-back { background: var(--surface); border-color: var(--green); cursor: default; }
+.flashcard.flip-in { animation: flipin 0.25s ease-out; }
+@keyframes flipin { from { transform: perspective(900px) rotateY(-90deg); } to { transform: perspective(900px) rotateY(0); } }
+.fc-ask { font-weight: 800; font-size: 14px; color: var(--violet); }
+.fc-kanji { font-size: 52px; font-weight: 700; line-height: 1.15; }
+.fc-reading { font-size: 22px; color: var(--muted); font-family: KanaHand, Nunito, "Hiragino Sans", sans-serif; }
+.fc-kana { font-size: 54px; line-height: 1.2; font-family: KanaHand, Nunito, "Hiragino Sans", sans-serif; }
+.fc-kana.long { font-size: 34px; }
+.fc-romaji { font-weight: 900; font-size: 22px; color: var(--violet); }
+.fc-fr { font-size: 20px; font-weight: 700; }
+.fc-fr.big { font-size: 26px; }
+.fc-hint { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.fc-speak { width: 48px; height: 48px; border-radius: 50%; background: var(--violet-soft); display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; }
+.grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.grade { min-height: 72px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+.grade:active { transform: translateY(4px); }
+.grade.again { background: var(--red); box-shadow: 0 5px 0 var(--red-lip); }
+.grade.hard { background: var(--surface); color: var(--text); border: 2px solid var(--border); box-shadow: 0 5px 0 var(--border); }
+.grade.good { background: var(--green); box-shadow: 0 5px 0 var(--green-lip); }
+.grade.easy { background: var(--violet); box-shadow: 0 5px 0 var(--violet-lip); }
+.grade-emoji { font-size: 20px; }
+.grade-label { font-weight: 800; font-size: 13px; }
+.grade-when { font-size: 11px; opacity: 0.85; }
