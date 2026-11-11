@@ -13,7 +13,8 @@
   --text: #1F1735; --muted: #746C8F;
   --violet: #7C3AED; --violet-lip: #5521B5; --violet-soft: #EDE5FF; --on-violet: #FFFFFF;
   --red: #F2384A; --red-lip: #B81D2F; --red-soft: #FFE3E6; --red-soft-ink: rgba(242, 56, 74, 0.45);
-  --green: #2BC46A; --green-lip: #1B8C4A; --green-soft: #DDF8E7;
+  /* 3.14 (revue C1) : vert assombri, le blanc dessus passe de 2,3:1 à 5,0:1. */
+  --green: #15803D; --green-lip: #0F5F2C; --green-soft: #DDF8E7;
   --gold: #FFB020; --flame: #FF6A1A; --ink: #1F1735; --ghost: rgba(124, 58, 237, 0.22);
   --disabled: #E9E6F0; --disabled-lip: #CFCAD9;
   color-scheme: light;
@@ -24,7 +25,7 @@
     --text: #F5F2FF; --muted: #B2A9D4;
     --violet: #9B6BFF; --violet-lip: #6A3BD8; --violet-soft: #2F2458;
     --red: #FF5566; --red-lip: #C22A3C; --red-soft: #4A1C2A;
-    --green: #34D17A; --green-lip: #1E8F50; --green-soft: #173D2A;
+    --green: #198754; --green-lip: #116240; --green-soft: #173D2A;
     --ink: #F5F2FF; --ghost: rgba(155, 107, 255, 0.28); --disabled: #2A2340; --disabled-lip: #1E1930;
     color-scheme: dark;
   }
@@ -34,7 +35,7 @@
   --text: #F5F2FF; --muted: #B2A9D4;
   --violet: #9B6BFF; --violet-lip: #6A3BD8; --violet-soft: #2F2458;
   --red: #FF5566; --red-lip: #C22A3C; --red-soft: #4A1C2A;
-  --green: #34D17A; --green-lip: #1E8F50; --green-soft: #173D2A;
+  --green: #198754; --green-lip: #116240; --green-soft: #173D2A;
   --ink: #F5F2FF; --ghost: rgba(155, 107, 255, 0.28); --disabled: #2A2340; --disabled-lip: #1E1930;
   color-scheme: dark;
 }
@@ -704,3 +705,11 @@ body.viewer-open { overflow: hidden; }
 .grade-emoji { font-size: 20px; }
 .grade-label { font-weight: 800; font-size: 13px; }
 .grade-when { font-size: 11px; opacity: 0.85; }
+/* 3.14 : alerte quand le navigateur refuse d'enregistrer la progression. */
+.save-alert { position: fixed; left: 12px; right: 12px; top: calc(8px + env(safe-area-inset-top)); z-index: 50; padding: 10px 14px; border-radius: 14px; background: var(--red); color: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+/* 3.14 (revue C2) : le zoom à deux doigts est de nouveau permis (agrandir un kanji). « manipulation »
+   évite seulement le zoom par double appui, qui gênait les appuis rapides sur les boutons. */
+html, body { touch-action: manipulation; }
+/* 3.14 (revue C3) : repère visible au clavier, invisible au doigt. */
+[role="button"]:focus { outline: none; }
+[role="button"]:focus-visible, button:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
